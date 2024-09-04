@@ -16,7 +16,7 @@ export class MoviesService {
     private configService: ConfigService
   ) {}
 
-  async create(moviesData: any, file: Express.Multer.File): Promise<Movies> {
+  async create(moviesData: any, file: Express.Multer.File): Promise<any> {
     let existingMovie: Movies | null = null;
   
     if (moviesData.id) {
@@ -35,7 +35,7 @@ export class MoviesService {
       return this.movieRepository.save(existingMovie);
     } else {
       const newMovie = this.movieRepository.create(moviesData);
-      return this.movieRepository.save(newMovie) as unknown as Promise<Movies>;
+      return this.movieRepository.save(newMovie);
     }
   }   
   
